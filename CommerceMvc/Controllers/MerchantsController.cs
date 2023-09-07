@@ -16,6 +16,7 @@ namespace CommerceMvc.Controllers
 
         public ActionResult Index()
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             var merchants = _context.Merchants;
 
             return View(merchants);
@@ -24,6 +25,7 @@ namespace CommerceMvc.Controllers
         [Route("/merchants/{id:int}")]
         public ActionResult Show(int id)
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             var merchant = _context
                 .Merchants
                 .Include(m => m.Products)
@@ -35,6 +37,7 @@ namespace CommerceMvc.Controllers
 
         public ActionResult New()
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             return View();
         }
 

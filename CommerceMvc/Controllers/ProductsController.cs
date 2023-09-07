@@ -16,6 +16,7 @@ namespace CommerceMvc.Controllers
         [Route("/products/{id:int}")]
         public ActionResult Show(int id)
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             var product = _context
                 .Products
                 .Include(p => p.Merchant)

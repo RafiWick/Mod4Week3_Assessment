@@ -15,27 +15,36 @@ namespace CommerceMvc.Controllers
 
         public IActionResult Index()
         {
+            if (!Request.Cookies.ContainsKey("CurrentUser"))
+            {
+                Response.Cookies.Append("CurrentUser", "");
+            }
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             return View();
         }
 
         public IActionResult Login()
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             return View();
         }
 
         [HttpPost]
         public IActionResult Login(string currentUser)
         {
+            Response.Cookies.Append("CurrentUser", currentUser);
             return RedirectToAction("Index");
         }
 
         public IActionResult Logout()
         {
+            Response.Cookies.Append("CurrentUser", "");
             return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
         {
+            ViewData["CurrentUser"] = Request.Cookies["CurrentUser"];
             return View();
         }
 

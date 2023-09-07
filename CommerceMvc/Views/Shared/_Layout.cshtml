@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string? currentUser = ViewData["CurrentUser"] as string;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,6 +31,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <p class="nav-link text-dark">@currentUser</p>
                         </li>
                     </ul>
                 </div>
